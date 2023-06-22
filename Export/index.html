@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Bezpieczny Kredyt 2%</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main class="mortgage-form-wrapper">
+      <header>
+        <h1>Kalkulator Bezpieczny Kredyt 2%</h1>
+      </header>
+      <form id="mortgage-form" action="" class="mortgage-form">
+        <div class="mortgage-form--row">
+          <label for="amount-input">WARTOŚĆ NIERUCHOMOŚCI</label>
+          <input
+            type="number"
+            name="amount-input"
+            id="amount-input"
+            max="700000"
+            placeholder="Max 700000"
+            required
+          />
+          <!-- <p class="mortgage-form--help">Max 70000</p> -->
+        </div>
+        <div class="mortgage-form--row">
+            <div class="mortgage-form--row">
+                <label for="amount-input">WKŁAD WŁASNY</label>
+                <input
+                  type="number"
+                  name="amount-input"
+                  id="contribution-input"
+                  max="20000"
+                  placeholder="Max 20000"
+                  required
+                />
+                <!-- <p class="mortgage-form--help">Max 70000</p> -->
+              </div>
+              <!-- <div class="mortgage-form--row">
+          <label for="interest-rate-input">OPROCENTOWANIE</label>
+          <input
+            type="number"
+            name="amount-input"
+            id="interest-rate-input"
+            min="1"
+            max="20"
+            placeholder="Min 1% max 20%"
+            required
+          />
+          <p class="mortgage-form--help">Min 1% max 20%, without '%' symbol</p>
+        </div> -->
+        <div class="mortgage-form--row">
+          <label for="length-of-loan-input">OKRES KREDYTOWY</label>
+          <input
+            type="number"
+            name="amount-input"
+            id="length-of-loan-input"
+            min="1"
+            max="40"
+            placeholder="Min 1 year, max 40 years"
+            required
+          />
+          <!-- <p class="mortgage-form--help">Min 1 year, max 40 years</p> -->
+        </div>
+        <div class="mortgage-form--row mortgage-form--row__button-wrapper">
+          <button type="button" id="calculate-btn">Oblicz</button>
+          <!-- <button type="reset" id="reset-btn" class="reset-btn">Resetuj</button> -->
+        </div>
+      </form>
+      <div id="results-all">
+        <div class="results-bk2">
+          <p class="results-title">Bezpieczny kredyt 2%</p>
+          <p id="resutl-first-bk2"></p>
+          <p id="resutl-mortgage-bk2"></p>
+          <p id="resutl-savings-bk2"></p>
+        </div>
+        <div class="results-normal">
+          <p class="results-title" >Zwykły kredyt</p>
+          <p id="resutl-first"></p>
+          <p id="resutl-mortgage"></p>
+        </div>
+      </div>
+      <!-- <p class="motgage-result"><span id="mortgage-final-result"></span></p> -->
+    </main>
+    <!-- <p class="photo-credit">
+      <a
+        href="https://unsplash.com/photos/JXI2Ap8dTNc"
+        title="Viewe original image"
+        >Background image: Tierra Mallorca (Unsplash)</a
+      >
+    </p> -->
+    <script src="index.js"></script>
+  </body>
+</html>

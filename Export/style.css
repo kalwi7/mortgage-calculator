@@ -3,13 +3,8 @@
   box-sizing: border-box;
 }
 
-::-moz-placeholder {
-  font-size: small;
-  color: #aaa;
-}
-
 ::placeholder {
-  font-size: small;
+  /* font-size: small; */
   color: #aaa;
 }
 
@@ -20,12 +15,13 @@ body {
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh;
   align-items: center;
   justify-content: center;
+  background-color: #f3f3f3;
   background-size: cover;
   padding: 0 15px;
 }
@@ -39,7 +35,7 @@ a:focus {
   text-decoration: underline;
 }
 
-.photo-credit {
+/* .photo-credit {
   position: absolute;
   bottom: 15px;
   right: 15px;
@@ -52,13 +48,12 @@ a:focus {
 .photo-credit a:hover,
 .photo-credit a:focus {
   opacity: 1;
-}
+} */
 
 .mortgage-form-wrapper {
-  background-color: white;
-  padding: 30px 30px 0;
+  /* padding: 30px 30px 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-  min-width: 420px;
+  min-width: 420px; */
 }
 @media screen and (max-width: 480px) {
   .mortgage-form-wrapper {
@@ -74,10 +69,12 @@ a:focus {
 }
 .mortgage-form-wrapper input[type="number"] {
   border: 1px solid #ddd;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   width: 100%;
   font-size: small;
   padding: 11px;
+  height: 45px;
+  font-size: 18px;
 }
 .mortgage-form-wrapper input[type="number"]:invalid {
   background-color: rgba(240, 128, 128, 0.075);
@@ -107,7 +104,10 @@ a:focus {
   margin: 0 0 15px;
 }
 .mortgage-form-wrapper label {
+  font-weight: 300;
+  font-size: 18px;
   display: block;
+  padding: 15px 0;
 }
 
 p.motgage-result {
@@ -130,15 +130,13 @@ p.motgage-result .success-message {
 }
 
 .mortgage-form--row__button-wrapper {
+  margin-top: 20px;
   text-align: center;
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
 }
-/* .mortgage-form--row__button-wrapper button {
-} */
-
-.formbtn1 {
+.mortgage-form--row__button-wrapper button {
   border: none;
   background-color: lightcoral;
   padding: 12px 20px;
@@ -150,7 +148,6 @@ p.motgage-result .success-message {
   outline: 2px solid lightcoral;
   margin: 0 7.5px;
 }
-
 .mortgage-form--row__button-wrapper button:hover,
 .mortgage-form--row__button-wrapper button:focus {
   background-color: #666;
@@ -170,6 +167,28 @@ p.motgage-result .success-message {
   outline: 2px solid #a9a9a9;
 }
 
-.reset-btn {
+/* .reset-btn {
   display: none;
-} /*# sourceMappingURL=style.css.map */
+} */
+
+#results-all {
+  display: none;
+}
+
+.results-bk2 {
+  background-color: #fcd300;
+  padding: 15px;
+}
+
+.results-normal {
+  color: white;
+  background-color: rgb(61, 61, 61);
+  padding: 15px;
+}
+
+.results-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/*# sourceMappingURL=style.css.map */
