@@ -18,9 +18,10 @@ const resutlSavings = document.getElementById("resutl-savings");
 const resutlCost = document.getElementById("resutl-cost");
 const resutlFirst = document.getElementById("resutl-first");
 const resutlMortgage = document.getElementById("resutl-mortgage");
+const resutlSummary = document.getElementById("mortgage-summary");
 
-const interestRateBK = 2.7;
-const interestRate = 8.48;
+const interestRateBK = 2.869;
+const interestRate = 8.69;
 
 const errorMessage = "Błąd w formularzu!";
 
@@ -44,11 +45,7 @@ window.addEventListener("load", (event) => {
 
 setTimeout(function () {
   errorBox.style.display = "none";
-}, 2000);
-
-// function alertFunc() {
-//   alert("Hello!");
-// }
+}, 3000);
 
 function calculateDecreasingLoan(months, totalAmount, interestRate) {
   // Obliczanie miesięcznej stopy oprocentowania
@@ -83,13 +80,13 @@ function calculateDecreasingLoan(months, totalAmount, interestRate) {
       payed_: payed_,
     });
 
-    if (i === 120) {
+    if (i === 119) {
       const newMonths = months - 120;
 
       const since120 = calculateFixedInstallmentsLoan(
         newMonths,
         remainingAmount,
-        8.48
+        8.69
       );
       lastElementPayed = since120.slice(-1)[0].payed;
       bk2FullCost = lastElementPayed + amortizationSchedule[119].payed_;
@@ -104,7 +101,6 @@ function calculateFixedInstallmentsLoan(months, totalAmount, interestRate) {
   // Obliczanie miesięcznej stopy oprocentowania
   const monthlyInterestRate = interestRate / 12 / 100;
 
-  // let interestSum = 0;
   // Obliczanie współczynnika dla równych rat
   const coefficient =
     (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) /
@@ -160,48 +156,44 @@ totalAmountInput.addEventListener("focusout", function (e) {
   totalAmount = parseInt(totalAmountInput.value);
   if (!totalAmount) {
     totalAmount = 400000;
-  } else if (totalAmount + contribution > 800000) {
-    totalAmount = 800000 - contribution;
+  } else if (totalAmount + contribution > 1000000) {
+    // totalAmount = 1000000 - contribution;
+    totalAmount = 800000;
     totalAmountInput.value = totalAmount;
-    errorBox.textContent = "Maksymalna wartość nieruchomości to 800 tyś";
+    errorBox.textContent =
+      "Wartość nieruchomości zmieniona! Maksymalna wartość to 800 tys.";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // totalAmountInput.classList.add("error");
+    }, 3000);
   } else if (totalAmount < 90000) {
     totalAmount = 90000;
-    // totalAmountInput.value = totalAmount;
-    errorBox.textContent = "Minimalna wartość nieruchomości to 90 tyś";
+    errorBox.textContent =
+      "Wartość nieruchomości zmieniona! Minimalna wartość to 90 tys.";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // totalAmountInput.classList.add("error");
+    }, 3000);
   } else if (totalAmount > 600000 && contribution < totalAmount - 600000) {
     totalAmount = 600000 + contribution;
-    // totalAmountInput.value = totalAmount;
     errorBox.textContent =
-      "Wartość nieruchomości zmieniona! Maksymalna wartość 600 tyś + wkład";
+      "Wartość nieruchomości zmieniona! Maksymalna wartość to 600 tys + wkład";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
+    }, 3000);
   } else if (totalAmount <= contribution) {
     totalAmount = 800000 - contribution;
-    // totalAmountInput.value = totalAmount;
-    errorBox.textContent = "Wkład własny większy od wartości nieruchomości";
+    errorBox.textContent =
+      "Wartość nieruchomości zmieniona! Wkład własny większy od wartości nieruchomości";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // totalAmountInput.classList.add("error");
+    }, 3000);
   } else {
     errorBox.style.display = "none";
-    // totalAmountInput.classList.remove("error");
   }
   totalAmountInput.value = numberWithSpaces(parseInt(totalAmount)) + " zł";
-  // totalAmountInput.value = totalAmount;
 });
 
 contributionInput.addEventListener("focus", function (e) {
@@ -213,47 +205,47 @@ contributionInput.addEventListener("focusout", function (e) {
   console.log(contribution);
   if (!contribution) {
     contribution = 0;
-  } else if (totalAmount + contribution > 800000) {
-    if (totalAmount >= 600000) {
-      contribution = 800000 - totalAmount;
-      errorBox.textContent = "Maksymalna wartość nieruchomości to 800 tyś";
-    } else {
-      contribution = 200000;
-      errorBox.textContent = "Maksymalny wkład własny to 200 tyś";
-    }
-    errorBox.style.display = "block";
-    setTimeout(function () {
-      errorBox.style.display = "none";
-    }, 2000);
-    // contributionInput.classList.add("error");
-  } else if (totalAmount > 600000 && contribution < totalAmount - 600000) {
-    contribution = 800000 - totalAmount;
-    // totalAmountInput.value = totalAmount;
+  } else if (totalAmount + contribution > 1000000) {
+    // if (totalAmount >= 600000) {
+    //   contribution = totalAmount - 600000;
+    contribution = 200000;
     errorBox.textContent =
-      "Wkład własny zmieniony! Za duża wartość nieruchomości";
+      "Wielkość wkładu zmieniona! Maksymalna wartość to 200 tys.";
+    // } else {
+    //   contribution = 200000;
+    //   errorBox.textContent =
+    //     "Wielkość wkładu zmieniona! Maksymalna wartość to 200 tys.";
+    // }
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
+    }, 3000);
+  } else if (totalAmount > 600000 && contribution < totalAmount - 600000) {
+    contribution = 200000 - (800000 - totalAmount);
+    errorBox.textContent =
+      "Wielkość wkładu zmieniona! Za duża wartość nieruchomości";
+    errorBox.style.display = "block";
+    setTimeout(function () {
+      errorBox.style.display = "none";
+    }, 3000);
   } else if (contribution > 200000) {
     contribution = 200000;
-    errorBox.textContent = "Maksymalny wkład własny to 200 tyś";
+    errorBox.textContent =
+      "Wielkość wkładu zmieniona! Maksymalna wartość to 200 tys.";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // contributionInput.classList.add("error");
+    }, 3000);
   } else if (contribution >= totalAmount) {
     contribution = 50000;
-    errorBox.textContent = "Za duży wkład własny";
+    errorBox.textContent =
+      "Wielkość wkładu zmieniona! Wkład własny większy od wartości nieruchomości";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // contributionInput.classList.add("error");
+    }, 3000);
   } else {
     errorBox.style.display = "none";
-    // contributionInput.classList.remove("error");
   }
   contributionInput.value = numberWithSpaces(parseInt(contribution)) + " zł";
 });
@@ -268,22 +260,20 @@ monthsInput.addEventListener("focusout", function (e) {
     years = 30;
   } else if (years > 35) {
     years = 35;
-    errorBox.textContent = "Maksymalny okres spłaty to 35 lat";
+    errorBox.textContent = "Okres spłaty zmieniony! Maksymalny to 35 lat";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
-    // monthsInput.classList.add("error");
+    }, 3000);
   } else if (years < 15) {
     years = 15;
-    errorBox.textContent = "Minimalny okres spłaty to 15";
+    errorBox.textContent = "Okres spłaty zmieniony! Minimalny to 15 lat";
     errorBox.style.display = "block";
     setTimeout(function () {
       errorBox.style.display = "none";
-    }, 2000);
+    }, 3000);
   } else {
     errorBox.style.display = "none";
-    // monthsInput.classList.remove("error");
   }
   monthsInput.value = years + " lat";
 });
@@ -295,14 +285,11 @@ calculateBtn.addEventListener("click", function (e) {
     contribution <= 200000 &&
     totalAmount >= 90000 &&
     totalAmount <= 800000 &&
-    totalAmount + contribution <= 800000
+    totalAmount + contribution <= 1000000
   ) {
-    // errorBox.style.display = "none";
     calculateMortgagePayment();
   } else {
-    errorBox.textContent = "Popraw wartości w formularzu!";
     errorBox.style.display = "block";
-    // calculateBtn.classList.add("form-error");
   }
 });
 
@@ -323,7 +310,6 @@ function calculateMortgagePayment() {
   resutlFirstBk2.innerHTML = `${installemnt1} <span class="discountBadgeBk2"> -${
     Math.round(schedule1[0].installment) - Math.round(schedule[0].installment)
   } zł</span>`;
-  // resutlMortgageBk2.textContent = interestRateBK + "%";
   resutlMortgageBk2After.textContent = interestRate + "%";
   resutlCostBk2.textContent = numberWithSpaces(Math.round(bk2FullCost)) + " zł";
   resutlSavings.textContent =
@@ -337,8 +323,14 @@ function calculateMortgagePayment() {
   calculateBtn.classList.add("form-success");
   resultsBox.style.display = "flex";
   appoitmentBox.style.display = "flex";
+  resutlSummary.style.display = "block";
+  resutlSummary.textContent = `Kredyt ${
+    numberWithSpaces(parseInt(totalAmount - contribution)) + " zł"
+  } na ${years} lat`;
+
   monthsInput.scrollIntoView({
     behavior: "smooth",
     block: "start",
   });
 }
+totalAmountInput.value = numberWithSpaces(parseInt(totalAmount)) + " zł";

@@ -15,6 +15,7 @@ body {
 }
 
 .mortgage-form--row {
+  position: relative;
   font-weight: 300;
   min-width: 300px;
   width: 33.3%;
@@ -54,13 +55,43 @@ body {
   padding: 11px;
   height: 45px;
   font-size: 16px;
+  padding-right: 30px;
 }
 
-.mortgage-form-wrapper input.error {
+.mortgage-info {
+  width: 28px;
+  height: 28px;
+  font-size: 19px;
+  position: absolute;
+  top: 49px;
+  right: 21px;
+  color: #ff866c;
+  border: 1px solid #ff866c;
+  padding-top: 3px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mortgage-info-box {
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  z-index: 999;
+}
+
+.mortgage-info:hover + .mortgage-info-box {
+  display: block;
+}
+/* .mortgage-form-wrapper input .mortgage-form-wrapper input.error {
   background-color: rgba(240, 128, 128, 0.075);
   border: 1px solid lightcoral;
   outline: none;
-}
+} */
 
 /* .mortgage-form-wrapper p {
   margin: 0 0 15px;
@@ -115,16 +146,22 @@ p.motgage-result .error-message {
 }
 
 .results-bk2 .results-data .result-row:last-of-type {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   font-weight: 800;
   color: orangered;
-  padding: 5px;
+  /* padding: 5px; */
   border-bottom: 1px solid orangered;
-  /* background-color: rgb(226, 97, 50); */
+}
+.results-bk2 .results-data .result-row:nth-of-type(7) {
+  margin-top: 45px;
 }
 
 .results-normal .results-data .result-row {
   border-bottom: 1px solid rgb(139, 139, 139);
+}
+
+.results-normal .results-data .result-row:last-of-type {
+  margin-top: 230px;
 }
 
 #results-all {
@@ -137,8 +174,8 @@ p.motgage-result .error-message {
   content: "";
   top: -11px;
   right: -2px;
-  width: 170px;
-  height: 100px;
+  width: 145px;
+  height: 80px;
   background: url(/bk2.png) 0 0 no-repeat;
   position: absolute;
   display: inline-block;
@@ -147,7 +184,7 @@ p.motgage-result .error-message {
 
 .discountBadgeBk2 {
   font-size: 13px;
-  padding: 2px 6px 1px;
+  padding: 3px 6px 1px;
   background-color: #ffd0a5;
   color: #565656;
 }
@@ -231,6 +268,10 @@ p.motgage-result .error-message {
     box-shadow: none;
   }
 
+  .results-bk2 {
+    padding-top: 25px;
+  }
+
   .mortgage-form--row {
     width: 100%;
   }
@@ -248,6 +289,19 @@ p.motgage-result .error-message {
     font-size: 18px;
     margin-bottom: 10px;
   }
+
+  .results-normal .results-data .result-row:last-of-type {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .results-bk2 .results-title::after {
+    top: -17px;
+    right: 0px;
+    width: 109px;
+    height: 60px;
+  }
 }
 
 .result-const-data {
@@ -257,11 +311,19 @@ p.motgage-result .error-message {
 }
 
 .result-const-data-row {
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   background-color: #f5f5f5;
   padding: 5px;
   font-size: 14px;
+}
+
+#mortgage-summary {
+  display: none;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */
